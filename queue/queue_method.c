@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   queue_method.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-omar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/09 15:54:29 by mel-omar          #+#    #+#             */
+/*   Updated: 2020/02/09 17:45:06 by mel-omar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "queue.h"
 
-void	enqueue(Queue **q, void *data)
+void	enqueue(t_queue **q, void *data)
 {
-	Node	*temp;
+	t_node	*temp;
 
-	temp = malloc(sizeof(Node));
+	temp = malloc(sizeof(t_node));
 	temp->next = NULL;
 	temp->prev = NULL;
 	temp->data = data;
 	if (!(*q))
 	{
-		*q = malloc(sizeof(Queue));
+		*q = malloc(sizeof(t_queue));
 		(*q)->head = NULL;
 		(*q)->tail = NULL;
 	}
@@ -27,10 +39,10 @@ void	enqueue(Queue **q, void *data)
 	}
 }
 
-void	*dequeue(Queue *q)
+void	*dequeue(t_queue *q)
 {
 	void	*data;
-	Node	*temp;
+	t_node	*temp;
 
 	if (!q || !q->head)
 		return (NULL);
@@ -43,25 +55,24 @@ void	*dequeue(Queue *q)
 	}
 	else
 	{
-		temp = q->tail;
-		q->tail = q->tail->prev;
-		q->tail->next = NULL;
+		temp = q->head;
+		q->head = q->head->next;
 		data = temp->data;
 		free(temp);
 	}
 	return (data);
 }
 
-void	*peek(const Queue *q)
+void	*peek(const t_queue *q)
 {
 	if (!q || !q->head)
 		return (NULL);
 	return (q->tail->data);
 }
 
-void	print_queue(const Queue *q, void display(void *data))
+void	print_queue(const t_queue *q, void display(void *data))
 {
-	Node	*temp;
+	t_node	*temp;
 
 	if (!q || !q->head)
 		return ;
@@ -73,10 +84,10 @@ void	print_queue(const Queue *q, void display(void *data))
 	}
 }
 
-void	clear_queue(Queue **q)
+void	clear_queue(t_queue **q)
 {
-	Node	*temp;
-	Node	*before;
+	t_node	*temp;
+	t_node	*before;
 
 	if (*q && (*q)->head)
 	{

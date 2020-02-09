@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   additional_method.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mel-omar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/09 15:29:31 by mel-omar          #+#    #+#             */
+/*   Updated: 2020/02/09 15:44:38 by mel-omar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "hash_map.h"
 
-int		compare(const void *val1,const void *val2, size_t key_size)
+int				compare(const void *val1, const void *val2, size_t key_size)
 {
-	size_t		iter;
+	size_t			iter;
 	unsigned char	*v1;
 	unsigned char	*v2;
 
@@ -16,12 +28,11 @@ int		compare(const void *val1,const void *val2, size_t key_size)
 	return (1);
 }
 
-key_value	*init_kv(void *key, void *value)
+t_key_value		*init_kv(void *key, void *value)
 {
-	key_value	*k_v;
-	size_t		len;
+	t_key_value		*k_v;
 
-	k_v = malloc(sizeof(key_value));
+	k_v = malloc(sizeof(t_key_value));
 	k_v->key = key;
 	k_v->value = value;
 	return (k_v);
